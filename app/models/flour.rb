@@ -1,0 +1,2 @@
+class Flour < ApplicationRecord
+end

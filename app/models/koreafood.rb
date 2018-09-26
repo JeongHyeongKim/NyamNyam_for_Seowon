@@ -1,0 +1,2 @@
+class Koreafood < ApplicationRecord
+end

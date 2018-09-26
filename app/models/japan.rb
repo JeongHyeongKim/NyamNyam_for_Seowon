@@ -1,0 +1,2 @@
+class Japan < ApplicationRecord
+end
