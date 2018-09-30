@@ -1,5 +1,5 @@
 # Age and Gender Estimation
-This is a NyamNyam chatbot using kakao_plusfriend.
+This is chatbot-NyamNyam for dingco-dingco
 
 
 
