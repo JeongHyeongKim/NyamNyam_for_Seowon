@@ -1,6 +1,6 @@
-class CreateKoreas < ActiveRecord::Migration[5.0]
+class CreateCaffeines < ActiveRecord::Migration[5.0]
   def change
-    create_table :koreas do |t|
+    create_table :caffeines do |t|
       
       t.string :name  #name for store
       t.string :photo_url #photo_info

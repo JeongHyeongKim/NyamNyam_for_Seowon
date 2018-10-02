@@ -1,0 +1,2 @@
+class Caffeine < ApplicationRecord
+end

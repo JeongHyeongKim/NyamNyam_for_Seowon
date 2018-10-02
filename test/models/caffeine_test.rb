@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class KoreafoodTest < ActiveSupport::TestCase
+class CaffeineTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
