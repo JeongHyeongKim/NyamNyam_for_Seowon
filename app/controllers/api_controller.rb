@@ -97,15 +97,16 @@ class ApiController < ApplicationController
       if @response=="홈으로"
             @@parameter_content="홈으로"
             @@layer_depth="1"
-            @msg = {
-                     message: {
-                     text: "홈으로 돌아갑니다.",
-                    },
-                     keyboard: {
-                       type: "buttons",
-                      buttons: @@initial_button
-                     }
-                    }
+            @msg = make_button(@@initial_button)
+#            {
+#                     message: {
+#                     text: "홈으로 돌아갑니다.",
+#                    },
+#                     keyboard: {
+#                       type: "buttons",
+#                      buttons: @@initial_button
+#                     }
+#                    }
             render json: @msg, status: :ok
                 
       elsif @@parameter_content=="카페냠냠"

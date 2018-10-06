@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'api/api_init'
+  get '/keyboard' => 'api#api_init'
+  post '/message' => 'api#api_message'
 
-  get 'api/api_message' #for kakao_chatbot
 
-
-#for admin page
+#for kakao_api
 
 
   get '/admin' => 'admin#select_model' #for admin page
