@@ -1,17 +1,18 @@
 class ApiController < ApplicationController
   
-  @@layer_depth = "1"
+  @@layer_depth=1
   @@initial_button=["학식/긱사냠냠", "카페냠냠", "간식냠냠", "한식냠냠", "중식냠냠", "일식냠냠", "양식냠냠","분식냠냠","고기냠냠","꼬꼬냠냠","카레냠냠","알콜냠냠","랜덤냠냠"]
   @@parameter_content="카페냠냠"
   #각각 모델에 대한 이름 엑세스? 반응속도 
   
 ###################################################################################  
-
-  def make_button(data) #버튼과 텍스트만 다룰 때
-      if @@parameter=="흠으로"
+# http://k.kakaocdn.net/dn/CljIq/btqmRoMuyOM/5J5keZ0SvzG1rlVrrS9uU1/img_xl.jpg => test photo
+# http://pf.kakao.com/_xhuxdtC/20814072 => test 메뉴판
+  def self.make_button(data) #버튼과 텍스트만 다룰 때
+      if @@parameter_content=="흠으로"
           @text="홈으로"
       else
-          @text=@@parameter+" 리스트입니다."
+          @text=@@parameter_content+" 리스트입니다."
       end
       @msg={
             message: {
@@ -26,7 +27,7 @@ class ApiController < ApplicationController
       return @msg
   end 
   
-  def show_detail(photo, detail, button) #사진과 링크도 포함시 사용하는 함수
+  def self.show_detail(photo, detail, button) #사진과 링크도 포함시 사용하는 함수
       @msg={
                      message: {
                      text: "쩝쩝",
@@ -68,7 +69,7 @@ class ApiController < ApplicationController
     if @@layer_depth==1 ##초기 메뉴화면
     
       if @response == "카페냠냠"
-            @market_information=Cafe.all
+            @market_information=Caffeine.all
             @button_layer=Array.new
             @@parameter_content="카페냠냠"
             
@@ -76,19 +77,8 @@ class ApiController < ApplicationController
               @button_layer.push(@market_information.find(i).name)
             end         #객체 불러와서 버튼에 그 객체 가게이름 버튼레이어 에다넣음
             
-            @@layer_depth = "2"   #카페 리스트
-            
-#            @msg = {
-#            message: {
-#                text: "카페냠냠 리스트입니다.",
-#
-#              },
-#              keyboard: {
-#                type: "buttons",
-#                buttons:@button_layer
-#              }
-#            }
-             @msg=make_button(@button_layer)
+            @@layer_depth = 2   #카페 리스트
+            @msg=ApiController.make_button(@button_layer)
             render json: @msg, status: :ok
       end
     
@@ -96,17 +86,8 @@ class ApiController < ApplicationController
     elsif @@layer_depth==2##메뉴 1차선택
       if @response=="홈으로"
             @@parameter_content="홈으로"
-            @@layer_depth="1"
-            @msg = make_button(@@initial_button)
-#            {
-#                     message: {
-#                     text: "홈으로 돌아갑니다.",
-#                    },
-#                     keyboard: {
-#                       type: "buttons",
-#                      buttons: @@initial_button
-#                     }
-#                    }
+            @@layer_depth=1
+            @msg = ApiController.make_button(@@initial_button)
             render json: @msg, status: :ok
                 
       elsif @@parameter_content=="카페냠냠"
@@ -116,7 +97,7 @@ class ApiController < ApplicationController
               @button_layer.push(@content_information.find(i).name)
             end              #버튼 생성
               
-            for i in 2..@discount_information.length  #DB많아지면 연산이 길다
+            for i in 2..@content_information.length  #DB많아지면 연산이 길다
               @content_case=@content_information.find(i).name #카페이름
 
           
