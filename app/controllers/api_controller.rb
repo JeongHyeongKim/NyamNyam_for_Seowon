@@ -8,6 +8,7 @@ class ApiController < ApplicationController
 ###################################################################################  
 # http://k.kakaocdn.net/dn/CljIq/btqmRoMuyOM/5J5keZ0SvzG1rlVrrS9uU1/img_xl.jpg => test photo
 # http://pf.kakao.com/_xhuxdtC/20814072 => test 메뉴판
+
   def self.make_button(data) #버튼과 텍스트만 다룰 때
       if @@parameter_content=="흠으로"
           @text="홈으로"
@@ -42,11 +43,13 @@ class ApiController < ApplicationController
                      }
                     },
                      keyboard: {
-                       type: "button",
+                       type: "buttons",
                       buttons:button
                      }
               }
       return @msg
+      
+
 
   end
 
@@ -92,10 +95,28 @@ class ApiController < ApplicationController
                 
       elsif @@parameter_content=="카페냠냠"
             @button_layer=Array.new
+            @button_layer_back=Array.new #후문
+            @button_layer_middle=Array.new #중문
+            @button_layer_west=Array.new #서문
+            @button_layer_etc=Array.new #기타
+            @button_layer_front=Array.new
             @content_information=Caffeine.all
+            
             for i in 1..@content_information.length
-              @button_layer.push(@content_information.find(i).name)
-            end              #버튼 생성
+              if @content_information.find(i).location=="중문"
+                  @button_layer_middle.push(@content_information.find(i).loaction)
+              elsif @content_information.find(i).loaction=="서문"
+                  @button_layer_west.push(@content_information.find(i).loaction)
+              elsif @content_information.find(i).loaction=="후문"
+                  @button_layer_back.push(@content_information.find(i).loaction)
+              elsif @content_information.find(i).loaction=="정문"
+                  @button_layer_front.push(@content_information.find(i).loaction)
+              elsif @content_information.find(i).loaction=="기타"
+                  @button_layer_etc.push(@content_information.find(i).loaction)
+              end       
+            end#버튼 생성
+            
+            @button_layer=@button_layer_middle+@button_layer_back+@button_layer_west+@button_layer_front+@button_layer_etc
               
             for i in 2..@content_information.length  #DB많아지면 연산이 길다
               @content_case=@content_information.find(i).name #카페이름
@@ -104,16 +125,9 @@ class ApiController < ApplicationController
               if @response==@content_case   #if_start카페 리스트
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
-#                  @msg = {
-#                    message: {
-#                      text: @discount_info, #내용이랑 사진 있으면 거기다가 더 추가하면 된다.
-#                    },
-#                    keyboard: {
-#                      type: "buttons",
-#                      buttons: @button_layer
-#                     }
-#                  }
-                   @msg=show_detail(@content_photo, @content_detail, @button_layer)
+                  @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @button_layer)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end

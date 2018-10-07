@@ -1,31 +1,11 @@
 class AdminController < ApplicationController
     
-    # 알콜, 꼬꼬, 고기, 양식, 분식, 일식, 한식, 중식
-    
-    #{
-#  "message": {
-#    "photo": {
-#      "url": "https://photo.src",
-#      "width": 640,
-#      "height": 480
-#    },
-#    "message_button": {
-#      "label": "주유 쿠폰받기",
-#      "url": "https://coupon/url"
-#    }
-#  },
-#  "keyboard": {
-#    "type": "buttons",
-#    "buttons": [
-#      "처음으로",
-#      "다시 등록하기",
-#      "취소하기"
-#    ]
-#  }
-#}
+    # 현재 만든 버튼 : 알콜, 꼬꼬, 고기, 양식, 분식, 일식, 한식, 중식
 
-    def select_model 
+    def select_model #초기화면
     end
+    
+    ###############################for listing data##################################
     
     def cafe_list
         @cafe=Caffeine.all
@@ -66,5 +46,46 @@ class AdminController < ApplicationController
     def alcohol_list
         @alcohol=Alcohol.all
     end
+    
+    
+    ###############################for adding data###################################
+    
+    def cafe_add
+        @cafe=Caffeine.new
+        @cafe.name=params[:name]
+        @cafe.photo_url=params[:photo_url]
+        @cafe.detail_url=params[:detail_url]
+        @cafe.save
+        redirect_to '/admin/cafe'
+    end
+    
+    def snack_add
+    end
+    
+    def korea_add
+    end
+    
+    def japan_add
+    end
+    
+    def china_add
+    end
+    
+    def europe_add
+    end
+    
+    def flour_add
+    end
+    
+    def meat_add
+    end
+    
+    def chicken_add
+    end
+    
+    def alcohol_add
+    end
+    
+    
     
 end
