@@ -21,3 +21,4 @@ made by JeongHyeongKim, dingco-dingco
 - 20181013
   1. 위치 태그기능 추가
   2. routing 경로 수정
+  3. 영업시간 띄우기 기능 추가
