@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post '/admin/flour/add' => 'admin#flour_add'
   post '/admin/meat/add' => 'admin#meat_add'
   post '/admin/chicken/add' => 'admin#chicken_add'
-  post '/admin/alcohol/add' => 'admin#cafe_add'   #add model data 
+  post '/admin/alcohol/add' => 'admin#alcohol_add'   #add model data 
   
   
   get '/admin/cafe_destroy_one/:post_id' => 'admin#cafe_destroy_one'
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   
   post 'admin/cafe_update/:post_id' => 'admin#cafe_update'
   post 'admin/korea_update/:post_id' => 'admin#korea_update'
-  post 'admin/ snack_update/:post_id' => 'admin# snack_update'
+  post 'admin/snack_update/:post_id' => 'admin# snack_update'
   post 'admin/japan_update/:post_id' => 'admin#japan_update'
   post 'admin/china_update/:post_id' => 'admin#china_update'
   post 'admin/europe_update/:post_id' => 'admin#europe_update'
@@ -68,6 +68,18 @@ Rails.application.routes.draw do
   post 'admin/meat_update/:post_id' => 'admin#meat_update'
   post 'admin/chicken_update/:post_id' => 'admin#chicken_update'
   post 'admin/alcohol_update/:post_id' => 'admin#alcohol_update'     ##update one data
+  
+  get 'admin/cafe_destroy_all' => 'admin#cafe_destroy_all'
+  get 'admin/snack_destroy_all' => 'admin#snack_destroy_all'
+  get 'admin/korea_destroy_all' => 'admin#koera_destroy_all'
+  get 'admin/japan_destroy_all' => 'admin#japan_destroy_all'
+  get 'admin/china_destroy_all' => 'admin#china_destroy_all'
+  get 'admin/europe_destroy_all' => 'admin#europe_destroy_all'
+  get 'admin/flour_destroy_all' => 'admin#flour_destroy_all'
+  get 'admin/meat_destroy_all' => 'admin#meat_destroy_all'
+  get 'admin/chicken_destroy_all' => 'admin#chicken_destroy_all'
+  get 'admin/alcohol_destroy_all' => 'admin#alcohol_destroy_all'
+  
   
     
   

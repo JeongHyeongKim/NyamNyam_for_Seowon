@@ -106,7 +106,7 @@ class AdminController < ApplicationController
     end
     
     def europe_add
-        @europe=europe.new
+        @europe=Europe.new
         @europe.name=params[:name]
         @europe.photo_url=params[:photo_url]
         @europe.detail_url=params[:detail_url]
@@ -172,7 +172,7 @@ class AdminController < ApplicationController
     def snack_destroy_one
         @what_delete=Snack.find(params[:post_id])
         @what_delete.destroy
-        redirect_to '/admin/sanck'
+        redirect_to '/admin/snack'
     end
     
     def korea_destroy_one
@@ -225,42 +225,52 @@ class AdminController < ApplicationController
     
     ###############################edit data###################################
     def cafe_edit
+        @cafe=Caffeine.all
         @data=Caffeine.find(params[:post_id])
     end
     
     def snack_edit
+        @snack=Snack.all
         @data=Snack.find(params[:post_id])
     end
     
     def korea_edit
+        @korea=Korea.all
         @data=Korea.find(params[:post_id])
     end
     
     def japan_edit
+        @japan=Japan.all
         @data=Japan.find(params[:post_id])
     end
     
     def china_edit
+        @china=China.all
         @data=China.find(params[:post_id])
     end
     
     def europe_edit
+        @europe=Europe.all
         @data=Europe.find(params[:post_id])
     end
     
     def flour_edit
+        @flour=Flour.all
         @data=Flour.find(params[:post_id])
     end
     
     def meat_edit
+        @meat=Meat.all
         @data=Meat.find(params[:post_id])
     end
     
     def chicken_edit
+        @chicken=Chicken.all
         @data=Chicken.find(params[:post_id])
     end
     
     def alcohol_edit
+        @alcohol=Alcohol.all
         @data=Alcohol.find(params[:post_id])
     end
     
@@ -372,6 +382,58 @@ class AdminController < ApplicationController
         @data.open_time=params[:open_time]
         @data.location=params[:location]
         @data.save
+        redirect_to '/admin/alcohol'
+    end
+    
+    ########################################destroy all data####################################
+    
+    def cafe_destroy_all
+        @Cafe.destroy_all
+        redirect_to '/admin/cafe'
+    end
+    
+    def snack_destroy_all
+        @Snack.destroy_all
+        redirect_to '/admin/snack'
+    end
+    
+    def korea_destroy_all
+        @Korea.destroy_all
+        redirect_to '/admin/korea'
+    end
+    
+    def japan_destroy_all
+        @Japan.destroy_all
+        redirect_to '/admin/japan'
+    end
+    
+    def china_destroy_all
+        @China.destroy_all
+        redirect_to '/admin/china'
+    end
+    
+    def europe_destroy_all
+        @Europe.destroy_all
+        redirect_to '/admin/europe'
+    end
+    
+    def flour_destroy_all
+        @Flour.destroy_all
+        redirect_to '/admin/flour'
+    end
+    
+    def meat_destroy_all
+        @Meat.destroy_all
+        redirect_to '/admin/meat'
+    end
+    
+    def chicken_destroy_all
+        @Chicken.destroy_all
+        redirect_to '/admin/chicken'
+    end
+    
+    def alcohol_destroy_all
+        @Alcohol.destroy_all
         redirect_to '/admin/alcohol'
     end
 end

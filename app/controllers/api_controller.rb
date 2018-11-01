@@ -47,8 +47,12 @@ class ApiController < ApplicationController
     @button_layer_front=Array.new #정문
     @home_button=Array.new
     @home_button.push("홈으로")
-    
-    for i in 2..market_information.length
+
+    for i in 1..market_information.maximum("id")
+      if market_information.where(id:i).empty?
+          next
+      end
+          
       if market_information.find(i).location=="중문"
           @button_layer_middle.push("[중문] "+market_information.find(i).name)
       elsif market_information.find(i).location=="서문"
@@ -203,10 +207,10 @@ class ApiController < ApplicationController
             @msg=ApiController.make_button(@button_layer)
             render json: @msg, status: :ok
             
-      elsif @response == "치킨냠냠"
+      elsif @response == "꼬꼬냠냠"
             @market_information=Chicken.all
             @button_layer=Array.new
-            @@parameter_content="치킨냠냠"
+            @@parameter_content="꼬꼬냠냠"
             @@layer_depth=2
             
             @button_layer=ApiController.add_label(@market_information)
@@ -246,7 +250,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -266,7 +273,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -286,7 +296,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -306,7 +319,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -326,7 +342,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -346,7 +365,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -367,7 +389,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -388,7 +413,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
@@ -409,8 +437,12 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
+              
 
               if @converted_response==@content_case   #if_start카페 리스트
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
@@ -430,7 +462,10 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@content_information) 
             
-            for i in 2..@content_information.length  #DB많아지면 연산이 길다
+            for i in 1..@content_information.maximum("id")  #DB많아지면 연산이 길다market_information.maximum("id")
+              if @content_information.where(id:i).empty?
+                  next
+              end
               @content_case=@content_information.find(i).name #DB의 업체 이름 비교대상
 
               if @converted_response==@content_case   #if_start카페 리스트
