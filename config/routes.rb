@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/admin' => 'admin#select_model' #for admin page
   
   get '/admin/cafe' => 'admin#cafe_list'
-  get '/admin/snack' => 'admin#snack_list'
   get '/admin/korea' => 'admin#korea_list'
   get '/admin/china' => 'admin#china_list'
   get '/admin/japan' => 'admin#japan_list'
@@ -23,7 +22,6 @@ Rails.application.routes.draw do
   get '/admin/alcohol' => 'admin#alcohol_list'    #listing each models
   
   post '/admin/cafe/add' => 'admin#cafe_add'
-  post '/admin/snack/add' => 'admin#snack_add'
   post '/admin/korea/add' => 'admin#korea_add'
   post '/admin/china/add' => 'admin#china_add'
   post '/admin/japan/add' => 'admin#japan_add'
@@ -33,6 +31,7 @@ Rails.application.routes.draw do
   post '/admin/chicken/add' => 'admin#chicken_add'
   post '/admin/alcohol/add' => 'admin#alcohol_add'   #add model data 
   
+<<<<<<< HEAD
   
   get '/admin/cafe_destroy_one/:post_id' => 'admin#cafe_destroy_one'
   get '/admin/snack_destroy_one/:post_id' => 'admin#snack_destroy_one'
@@ -81,6 +80,8 @@ Rails.application.routes.draw do
   get 'admin/alcohol_destroy_all' => 'admin#alcohol_destroy_all'
   
   
+=======
+>>>>>>> parent of 0b71f24... 20181101v1
     
   
   

@@ -55,57 +55,24 @@ class AdminController < ApplicationController
         @cafe.name=params[:name]
         @cafe.photo_url=params[:photo_url]
         @cafe.detail_url=params[:detail_url]
-        @cafe.open_time=params[:open_time]
-        @cafe.location=params[:location]
         @cafe.save
         redirect_to '/admin/cafe'
     end
     
     def snack_add
-        @snack=Snack.new
-        @snack.name=params[:name]
-        @snack.photo_url=params[:photo_url]
-        @snack.detail_url=params[:detail_url]
-        @snack.open_time=params[:open_time]
-        @snack.location=params[:location]
-        @snack.save
-        redirect_to '/admin/snack'
     end
     
     def korea_add
-        @korea=Korea.new
-        @korea.name=params[:name]
-        @korea.photo_url=params[:photo_url]
-        @korea.detail_url=params[:detail_url]
-        @korea.open_time=params[:open_time]
-        @korea.location=params[:location]
-        @korea.save
-        redirect_to '/admin/korea'
     end
     
     def japan_add
-        @japan=Japan.new
-        @japan.name=params[:name]
-        @japan.photo_url=params[:photo_url]
-        @japan.detail_url=params[:detail_url]
-        @japan.open_time=params[:open_time]
-        @japan.location=params[:location]
-        @japan.save
-        redirect_to '/admin/japan'
     end
     
     def china_add
-        @china=China.new
-        @china.name=params[:name]
-        @china.photo_url=params[:photo_url]
-        @china.detail_url=params[:detail_url]
-        @china.open_time=params[:open_time]
-        @china.location=params[:location]
-        @china.save
-        redirect_to '/admin/china'
     end
     
     def europe_add
+<<<<<<< HEAD
         @europe=Europe.new
         @europe.name=params[:name]
         @europe.photo_url=params[:photo_url]
@@ -114,55 +81,25 @@ class AdminController < ApplicationController
         @europe.location=params[:location]
         @europe.save
         redirect_to '/admin/europe'
+=======
+>>>>>>> parent of 0b71f24... 20181101v1
     end
     
     def flour_add
-        @flour=Flour.new
-        @flour.name=params[:name]
-        @flour.photo_url=params[:photo_url]
-        @flour.detail_url=params[:detail_url]
-        @flour.open_time=params[:open_time]
-        @flour.location=params[:location]
-        @flour.save
-        redirect_to '/admin/flour'
     end
     
     def meat_add
-        @meat=Meat.new
-        @meat.name=params[:name]
-        @meat.photo_url=params[:photo_url]
-        @meat.detail_url=params[:detail_url]
-        @meat.open_time=params[:open_time]
-        @meat.location=params[:location]
-        @meat.save
-        redirect_to '/admin/meat'
     end
     
     def chicken_add
-        @chicken=Chicken.new
-        @chicken.name=params[:name]
-        @chicken.photo_url=params[:photo_url]
-        @chicken.detail_url=params[:detail_url]
-        @chicken.open_time=params[:open_time]
-        @chicken.location=params[:location]
-        @chicken.save
-        redirect_to '/admin/chicken'
     end
     
     def alcohol_add
-        @alcohol=Alcohol.new
-        @alcohol.name=params[:name]
-        @alcohol.photo_url=params[:photo_url]
-        @alcohol.detail_url=params[:detail_url]
-        @alcohol.open_time=params[:open_time]
-        @alcohol.location=params[:open_time]
-        @alcohol.save
-        redirect_to '/admin/alcohol'
     end
     
-    ###############################destroy 1 data###################################
     
     
+<<<<<<< HEAD
     def cafe_destroy_one
         @what_delete=Caffeine.find(params[:post_id])
         @what_delete.destroy
@@ -436,4 +373,6 @@ class AdminController < ApplicationController
         @Alcohol.destroy_all
         redirect_to '/admin/alcohol'
     end
+=======
+>>>>>>> parent of 0b71f24... 20181101v1
 end
