@@ -47,24 +47,29 @@ class ApiController < ApplicationController
     @button_layer_front=Array.new #정문
     @home_button=Array.new
     @home_button.push("홈으로")
+    
+    if (market_information.first.nil?)
+        
+    else
 
-    for i in 1..market_information.maximum("id")
-      if market_information.where(id:i).empty?
-          next
-      end
+        for i in 1..market_information.maximum("id")
+       if market_information.where(id:i).empty?
+            next
+       end
           
-      if market_information.find(i).location=="중문"
-          @button_layer_middle.push("[중문] "+market_information.find(i).name)
-      elsif market_information.find(i).location=="서문"
-          @button_layer_west.push("[서문] "+market_information.find(i).name)
-      elsif market_information.find(i).location=="후문"
-          @button_layer_back.push("[후문] "+market_information.find(i).name)
-      elsif market_information.find(i).location=="정문"
-          @button_layer_front.push("[정문] "+market_information.find(i).name)
-      elsif market_information.find(i).location=="기타"
-          @button_layer_etc.push("[기타] "+market_information.find(i).name)
-      end       
+        if market_information.find(i).location=="중문"
+            @button_layer_middle.push("[중문] "+market_information.find(i).name)
+        elsif market_information.find(i).location=="서문"
+            @button_layer_west.push("[서문] "+market_information.find(i).name)
+        elsif market_information.find(i).location=="후문"
+            @button_layer_back.push("[후문] "+market_information.find(i).name)
+        elsif market_information.find(i).location=="정문"
+            @button_layer_front.push("[정문] "+market_information.find(i).name)
+        elsif market_information.find(i).location=="기타"
+            @button_layer_etc.push("[기타] "+market_information.find(i).name)
+        end       
     end#버튼 생성
+    end
     
     return @home_button+@button_layer_middle+@button_layer_front+@button_layer_back+@button_layer_west+@button_layer_etc
   end
