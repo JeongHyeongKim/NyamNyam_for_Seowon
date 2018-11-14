@@ -1,7 +1,15 @@
 class ApiController < ApplicationController
+  require 'unirest'
   
   @@layer_depth=1
   @@initial_button=["학식/긱사냠냠", "카페냠냠", "간식냠냠", "한식냠냠", "중식냠냠", "일식냠냠", "양식냠냠","분식냠냠","고기냠냠","꼬꼬냠냠","카레냠냠","알콜냠냠","랜덤냠냠"]
+  @@school_food=["홈으로","긱사냠냠", "학식냠냠", "비즈니스대학식당"]
+
+  
+  #비즈니스대학 : 점심만있음
+  #긱사식당 #아침, 점심 저녁  , (한식 일품) 저녁에는 축구부 있음
+  
+  
   @@parameter_content="카페냠냠"
   #각각 모델에 대한 이름 엑세스? 반응속도 
   
@@ -10,6 +18,33 @@ class ApiController < ApplicationController
 # http://pf.kakao.com/_xhuxdtC/20814072 => test 메뉴판
 
 
+
+  def self.call_dorm_food #긱사식단
+      time_now=Time.now
+      today = [time_now.year, time_now.month, time_now.day] * '-'
+      
+      
+      @meal =today + "일 식단\n■아침-1층\n#{morning_1}\n\n■아침-2층\n#{morning_2}\n\n■점심-1층\n#{lunch_1}\n\n■점심-2층\n#{lunch_2}\n\n■저녁-1층\n#{dinner_1}\n\n■저녁-2층\n#{dinner_2}\n\n■축구부\n#{dinner_soccer}"
+      return @meal
+  end
+  
+  def self.call_school_food #학식 식단
+      time_now=Time.now
+      today=[time_now.year, time_now.month, time_now.day] * '-'
+      
+      
+      @meal =today + "일 식단\n■양식\n#{eur}\n\n■한식\n#{kor}\n\n■돌솥\n#{stone}\n\n■일품\n#{first}"
+      return @meal
+  end
+  
+  def self.call_business_food
+      time_now=Time.now
+      
+      
+      @meal =today + "일 식단\n■점심\n#{business}"
+      return @meal
+  end
+  
   def self.delete_tag(data)
     @response=Array.new
     @response_buffer=data.split(//)
@@ -56,7 +91,7 @@ class ApiController < ApplicationController
        if market_information.where(id:i).empty?
             next
        end
-          
+
         if market_information.find(i).location=="중문"
             @button_layer_middle.push("[중문] "+market_information.find(i).name)
         elsif market_information.find(i).location=="서문"
@@ -89,10 +124,10 @@ class ApiController < ApplicationController
       return @msg
   end 
   
-  def self.show_detail(photo, detail, open_time, button) #사진과 링크도 포함시 사용하는 함수
+  def self.show_detail(photo, detail, open_time, button, contact) #사진과 링크도 포함시 사용하는 함수
       @msg={
                      message: {
-                     text: open_time,
+                     text: "영업시간 : "+open_time+"\n"+"전화번호 : "+contact,
                      photo:{
                        url:photo,
                        width:640,
@@ -109,9 +144,19 @@ class ApiController < ApplicationController
                      }
               }
       return @msg
-      
-
-
+  end
+  
+  def self.show_menu(button,menu) #사진과 링크도 포함시 사용하는 함수
+      @msg={
+                     message: {
+                     text: menu
+                     },
+                     keyboard: {
+                       type: "buttons",
+                      buttons:button
+                     }
+              }
+      return @msg
   end
 
 ################################################################################
@@ -213,7 +258,8 @@ class ApiController < ApplicationController
             render json: @msg, status: :ok
             
       elsif @response == "꼬꼬냠냠"
-            @market_information=Chicken.all
+            @market_information=Chicken.order(:name)
+            
             @button_layer=Array.new
             @@parameter_content="꼬꼬냠냠"
             @@layer_depth=2
@@ -230,6 +276,12 @@ class ApiController < ApplicationController
             
             @button_layer=ApiController.add_label(@market_information)
             @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "학식/긱사냠냠"
+            @@parameter_content="학식/긱사냠냠"
+            @@layer_depth=2
+            @msg=ApiController.make_button(@@school_food)
             render json: @msg, status: :ok
             
       else  #임시 예외처리
@@ -265,8 +317,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact 
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -320,7 +373,7 @@ class ApiController < ApplicationController
       elsif @@parameter_content=="중식냠냠"
             @button_layer=Array.new #최종 버튼
             @content_information=China.all #카페의 모든 정보
-            @converted_response=ApiController.delete_tag(@response) #사용자로부터 받은 입력값
+            @converted_response=ApiController.delete_tag(@response) #사용자로부��� 받은 입력값
             
             @button_layer=ApiController.add_label(@content_information) 
             
@@ -483,6 +536,21 @@ class ApiController < ApplicationController
                   render json: @msg, status: :ok
               end   #if end
             end                           #for_end
+       elsif @@parameter_content=="학식/긱사냠냠" #비즈니스대학, 긱사냠냠, 학식냠냠
+             @button_layer=Array.new
+             if @response=="긱사냠냠"                                #
+                 @msg=ApiController.show_menu(@@school_food, ApiController.call_dorm_food)
+                 render json:@msg, status: :ok
+                 
+             elsif @response=="학식냠냠"
+                 @msg=ApiController.show_menu(@@school_food, ApiController.call_school_food)
+                 render json:@msg, status: :ok
+             elsif @response=="비즈니스대학식당"
+                 @msg=ApiController.show_menu(@@school_food, ApiController.call_business_food)
+                 render json:@msg, status: :ok
+             end
+             
+             
       
                 
       end #버튼제어 종료

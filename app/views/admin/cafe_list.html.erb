@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,38 +65,3 @@
             
             
         </div>
-        
-        
-        
-    </div>
-</body>
-</html>
-=======
-<form action="/admin/cafe/add" method="post" id="add">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  이      름 : <input type="text" name="name"><br>
-  사  진 URL : <input type="text" name="photo_url"><br>
-  페이지 URL : <input type="text" name="detail_url"><br>
-  영업  시간 : <input type="text" name="open_time"><br>
-  위      치 : <input type="text" name="location">
-  <input type="submit" value="추가하기">
-</form>
-<br><br>
-<a href="/admin">모델 선택화면</a><br>
-<a href="/admin/destroy_all">전체삭제</a><br>
-
-<br><br><br><br>
-
-
-<% @cafe.each do |x|%>
-  <br>
-  이      름 : <%=x.name%><br>
-  사  진 URL : <%=x.photo_url%><br>
-  페이지 URL : <%=x.detail_url%><br>
-  영업  시간 : <%=x.open_time%><br>
-  위      치 : 
-  <a href="/admin/caffeine/destroy_one/<%=x.id%>">해당 주문 완료</a><br>
-  <a href="/admin/caffine/edit/<%=x.id %>">주문 수정</a><br>
-  =========================================================================<br>
-<%end%>
->>>>>>> parent of 0b71f24... 20181101v1
