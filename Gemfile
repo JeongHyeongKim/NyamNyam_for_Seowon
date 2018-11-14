@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'mysql2'
 gem 'figaro'
 
+gem 'unirest'
+
 
 gem 'rails_db'
 # Use jquery as the JavaScript library
