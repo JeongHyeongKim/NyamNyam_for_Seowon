@@ -22,6 +22,15 @@ class ApiController < ApplicationController
   def self.call_dorm_food #긱사식단
       time_now=Time.now
       today = [time_now.year, time_now.month, time_now.day] * '-'
+      response = Unirest.get 'https://bablabs.com/openapi/v1/campuses/hWiFLE5emh/stores?type&date='+today,
+                          headers:{"Accesstoken" => "Z9LHET60OrAV1zFuXqEMNOc7FarnKJLCokQhbFwkClsE6FScfC"}
+      morning_1 = response.body["stores"][0]["menus"][0]["description"]   #아침 - 한식
+      morning_2 = response.body["stores"][0]["menus"][1]["description"]   #아침 - 일품
+      lunch_1 = response.body["stores"][0]["menus"][2]["description"]   #점심 - 한식
+      lunch_2 = response.body["stores"][0]["menus"][3]["description"]   #점심 - 일품
+      dinner_1 = response.body["stores"][0]["menus"][4]["description"]   #저녁 - 한식
+      dinner_2 = response.body["stores"][0]["menus"][5]["description"]   #저녁 - 일품
+      dinner_soccer = response.body["stores"][0]["menus"][6]["name"] #저녁 - 축구부
       
       
       @meal =today + "일 식단\n■아침-1층\n#{morning_1}\n\n■아침-2층\n#{morning_2}\n\n■점심-1층\n#{lunch_1}\n\n■점심-2층\n#{lunch_2}\n\n■저녁-1층\n#{dinner_1}\n\n■저녁-2층\n#{dinner_2}\n\n■축구부\n#{dinner_soccer}"
@@ -31,6 +40,12 @@ class ApiController < ApplicationController
   def self.call_school_food #학식 식단
       time_now=Time.now
       today=[time_now.year, time_now.month, time_now.day] * '-'
+       response=Unirest.get 'https://bablabs.com/openapi/v1/campuses/hWiFLE5emh/stores?type&date='+today,
+                          headers:{"Accesstoken" => "Z9LHET60OrAV1zFuXqEMNOc7FarnKJLCokQhbFwkClsE6FScfC"}
+      eur = response.body["stores"][1]["menus"][0]["name"]+ " "+response.body["stores"][0]["menus"][0]["description"]
+      kor = response.body["stores"][1]["menus"][1]["name"]+ " "+response.body["stores"][0]["menus"][1]["description"]
+      stone=response.body["stores"][1]["menus"][2]["name"]+ " "+response.body["stores"][0]["menus"][2]["description"]
+      first=response.body["stores"][1]["menus"][3]["name"]+ " "+response.body["stores"][0]["menus"][3]["description"]
       
       
       @meal =today + "일 식단\n■양식\n#{eur}\n\n■한식\n#{kor}\n\n■돌솥\n#{stone}\n\n■일품\n#{first}"
@@ -40,6 +55,10 @@ class ApiController < ApplicationController
   def self.call_business_food
       time_now=Time.now
       today=[time_now.year, time_now.month, time_now.day] * '-'
+       today=[time_now.year, time_now.month, time_now.day] * '-'
+      response=Unirest.get 'https://bablabs.com/openapi/v1/campuses/hWiFLE5emh/stores?type&date='+today,
+                          headers:{"Accesstoken" => "Z9LHET60OrAV1zFuXqEMNOc7FarnKJLCokQhbFwkClsE6FScfC"}
+      business = +response.body["stores"][0]["menus"][0]["name"]+ " "+response.body["stores"][2]["menus"][0]["description"]
       
       
       @meal =today + "일 식단\n■점심\n#{business}"

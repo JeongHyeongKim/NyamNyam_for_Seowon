@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20181002163145) do
     t.string   "detail_url"
     t.string   "open_time"
     t.string   "location"
+    t.string   "contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
