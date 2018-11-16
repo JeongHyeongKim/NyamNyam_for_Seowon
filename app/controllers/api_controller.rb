@@ -39,6 +39,7 @@ class ApiController < ApplicationController
   
   def self.call_business_food
       time_now=Time.now
+      today=[time_now.year, time_now.month, time_now.day] * '-'
       
       
       @meal =today + "일 식단\n■점심\n#{business}"
@@ -341,8 +342,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact 
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer,@content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -364,8 +366,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact 
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -387,8 +390,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact 
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -410,8 +414,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact 
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -433,8 +438,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact 
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -457,8 +463,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -481,8 +488,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -506,8 +514,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end
@@ -530,8 +539,9 @@ class ApiController < ApplicationController
                   @content_photo=@content_information.find(i).photo_url #해당 업체의 사진
                   @content_detail=@content_information.find(i).detail_url #해당 업체의 디테일 페이지
                   @content_opentime=@content_information.find(i).open_time #해당 업체의 오픈시간
+                  @content_contact=@content_information.find(i).contact
 
-                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer)
+                  @msg=ApiController.show_detail(@content_photo, @content_detail, @content_opentime, @button_layer, @content_contact)
                   i=9999 #강제로 for문 탈출
                   render json: @msg, status: :ok
               end   #if end

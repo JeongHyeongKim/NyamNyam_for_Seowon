@@ -57,6 +57,7 @@ class AdminController < ApplicationController
         @cafe.detail_url=params[:detail_url]
         @cafe.open_time=params[:open_time]
         @cafe.location=params[:location]
+        @cafe.contact=params[:contact]
         @cafe.save
         redirect_to '/admin/cafe'
     end
@@ -68,6 +69,7 @@ class AdminController < ApplicationController
         @snack.detail_url=params[:detail_url]
         @snack.open_time=params[:open_time]
         @snack.location=params[:location]
+        @snack.contact=params[:contact]
         @snack.save
         redirect_to '/admin/snack'
     end
@@ -79,6 +81,7 @@ class AdminController < ApplicationController
         @korea.detail_url=params[:detail_url]
         @korea.open_time=params[:open_time]
         @korea.location=params[:location]
+        @korea.contact=params[:contact]
         @korea.save
         redirect_to '/admin/korea'
     end
@@ -90,6 +93,7 @@ class AdminController < ApplicationController
         @japan.detail_url=params[:detail_url]
         @japan.open_time=params[:open_time]
         @japan.location=params[:location]
+        @japan.contact=params[:contact]
         @japan.save
         redirect_to '/admin/japan'
     end
@@ -101,6 +105,7 @@ class AdminController < ApplicationController
         @china.detail_url=params[:detail_url]
         @china.open_time=params[:open_time]
         @china.location=params[:location]
+        @china.contact=params[:contact]
         @china.save
         redirect_to '/admin/china'
     end
@@ -112,6 +117,7 @@ class AdminController < ApplicationController
         @europe.detail_url=params[:detail_url]
         @europe.open_time=params[:open_time]
         @europe.location=params[:location]
+        @europe.contact=params[:contact]
         @europe.save
         redirect_to '/admin/europe'
     end
@@ -123,6 +129,7 @@ class AdminController < ApplicationController
         @flour.detail_url=params[:detail_url]
         @flour.open_time=params[:open_time]
         @flour.location=params[:location]
+        @flour.contact=params[:contact]
         @flour.save
         redirect_to '/admin/flour'
     end
@@ -134,6 +141,7 @@ class AdminController < ApplicationController
         @meat.detail_url=params[:detail_url]
         @meat.open_time=params[:open_time]
         @meat.location=params[:location]
+        @meat.contact=params[:contact]
         @meat.save
         redirect_to '/admin/meat'
     end
@@ -145,6 +153,7 @@ class AdminController < ApplicationController
         @chicken.detail_url=params[:detail_url]
         @chicken.open_time=params[:open_time]
         @chicken.location=params[:location]
+        @chicken.contact=params[:contact]
         @chicken.save
         redirect_to '/admin/chicken'
     end
@@ -156,6 +165,7 @@ class AdminController < ApplicationController
         @alcohol.detail_url=params[:detail_url]
         @alcohol.open_time=params[:open_time]
         @alcohol.location=params[:open_time]
+        @alcohol.contact=params[:contact]
         @alcohol.save
         redirect_to '/admin/alcohol'
     end
@@ -282,6 +292,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/cafe'
     end
@@ -293,6 +304,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/snack'
     end
@@ -304,6 +316,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/korea'
     end
@@ -315,6 +328,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/japan'
     end
@@ -326,6 +340,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/china'
     end
@@ -337,6 +352,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/europe'
     end
@@ -348,6 +364,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/flour'
     end
@@ -359,6 +376,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/meat'
     end
@@ -370,6 +388,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/chicken'
     end
@@ -381,6 +400,7 @@ class AdminController < ApplicationController
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
+        @data.contact=params[:contact]
         @data.save
         redirect_to '/admin/alcohol'
     end

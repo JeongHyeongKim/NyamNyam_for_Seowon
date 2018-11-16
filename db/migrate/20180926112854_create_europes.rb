@@ -7,6 +7,7 @@ class CreateEuropes < ActiveRecord::Migration[5.0]
       t.string :detail_url #detail_info
       t.string :open_time #time_info
       t.string :location #중문, 후문, 서문 구분
+      t.string :contact
 
       t.timestamps
     end
