@@ -54,3 +54,13 @@ made by JeongHyeongKim, dingco-dingco
   2. 학식 및 긱사 식단 제공 기능 추가 완료
   3. 연락처, 영업시간 텍스트 띄우기 기능 추가 및 정렬 완료
   4. 연락처 추가 폼 미완성(자고 일어나서 할거임)
+
+- 20181116
+  1. DB에 연락처 추가 및 뷰 연동 완료
+  2. deploy를 위한 commit
+
+- 20181116 v2
+  1. japan 모델 contact 속성 없는 오류 패치
+
+- 20181116 v3
+  1. admin_controller contact 파라미터 받는 기능 오류 패치

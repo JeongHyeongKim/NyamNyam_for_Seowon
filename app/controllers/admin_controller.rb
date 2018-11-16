@@ -300,7 +300,7 @@ class AdminController < ApplicationController
     def snack_update
         @data=Snack.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -312,7 +312,7 @@ class AdminController < ApplicationController
     def korea_update
         @data=Korea.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -324,7 +324,7 @@ class AdminController < ApplicationController
     def japan_update
         @data=Japan.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -336,7 +336,7 @@ class AdminController < ApplicationController
     def china_update
         @data=China.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -348,7 +348,7 @@ class AdminController < ApplicationController
     def europe_update
         @data=Europe.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -360,7 +360,7 @@ class AdminController < ApplicationController
     def flour_update
         @data=Flour.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -372,7 +372,7 @@ class AdminController < ApplicationController
     def meat_update
         @data=Meat.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -384,7 +384,7 @@ class AdminController < ApplicationController
     def chicken_update
         @data=Chicken.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
@@ -396,7 +396,7 @@ class AdminController < ApplicationController
     def alcohol_update
         @data=Alcohol.find(params[:post_id])
         @data.name=params[:name]
-        @data.photo_url=params[:product]
+        @data.photo_url=params[:photo_url]
         @data.detail_url=params[:detail_url]
         @data.open_time=params[:open_time]
         @data.location=params[:location]
