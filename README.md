@@ -67,3 +67,6 @@ made by JeongHyeongKim, dingco-dingco
 
 - 20181118_v1
   1. input tag 오타, 알콜냠냠 파라미터 오류 수정
+
+- 20181118_v2
+  1. api호출 예외처리 완료
