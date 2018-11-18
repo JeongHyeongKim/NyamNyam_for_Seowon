@@ -164,7 +164,7 @@ class AdminController < ApplicationController
         @alcohol.photo_url=params[:photo_url]
         @alcohol.detail_url=params[:detail_url]
         @alcohol.open_time=params[:open_time]
-        @alcohol.location=params[:open_time]
+        @alcohol.location=params[:location]
         @alcohol.contact=params[:contact]
         @alcohol.save
         redirect_to '/admin/alcohol'

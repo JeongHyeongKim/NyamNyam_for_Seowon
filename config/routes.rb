@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/admin' => 'admin#select_model' #for admin page
   
   get '/admin/cafe' => 'admin#cafe_list'
-  get '/admin/snack' => 'admin#snack'
+  get '/admin/snack' => 'admin#snack_list'
   get '/admin/korea' => 'admin#korea_list'
   get '/admin/china' => 'admin#china_list'
   get '/admin/japan' => 'admin#japan_list'
