@@ -64,3 +64,6 @@ made by JeongHyeongKim, dingco-dingco
 
 - 20181116 v3
   1. admin_controller contact 파라미터 받는 기능 오류 패치
+
+- 20181119_v1
+  1. input tag 오타, 알콜냠냠 파라미터 오류 수정
