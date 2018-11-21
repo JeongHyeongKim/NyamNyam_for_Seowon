@@ -2,7 +2,7 @@ class ApiController < ApplicationController
   require 'unirest'
   
   @@layer_depth=1
-  @@initial_button=["학식/긱사냠냠", "카페냠냠", "간식냠냠", "한식냠냠", "중식냠냠", "일식냠냠", "양식냠냠","분식냠냠","고기냠냠","꼬꼬냠냠","카레냠냠","알콜냠냠","랜덤냠냠"]
+  @@initial_button=["학식/긱사냠냠", "카페냠냠", "간식냠냠", "한식냠냠", "중식냠냠", "일식냠냠", "양식냠냠","분식냠냠","고기냠냠","꼬꼬냠냠","알콜냠냠"]
   @@school_food=["홈으로","긱사냠냠", "학식냠냠", "비즈니스대학식당"]
 
   
@@ -58,10 +58,10 @@ class ApiController < ApplicationController
        response=Unirest.get 'https://bablabs.com/openapi/v1/campuses/hWiFLE5emh/stores?type&date='+today,
                           headers:{"Accesstoken" => "Z9LHET60OrAV1zFuXqEMNOc7FarnKJLCokQhbFwkClsE6FScfC"}
       if response.body["stores"][1]["menu_description"].nil? #평일엔 빈값, 주말엔 있음
-          eur = response.body["stores"][1]["menus"][0]["name"]+ " "+response.body["stores"][0]["menus"][0]["description"]
-          kor = response.body["stores"][1]["menus"][1]["name"]+ " "+response.body["stores"][0]["menus"][1]["description"]
-          stone=response.body["stores"][1]["menus"][2]["name"]+ " "+response.body["stores"][0]["menus"][2]["description"]
-          first=response.body["stores"][1]["menus"][3]["name"]+ " "+response.body["stores"][0]["menus"][3]["description"]
+          eur = response.body["stores"][1]["menus"][0]["name"]+ " "+response.body["stores"][1]["menus"][0]["description"]
+          kor = response.body["stores"][1]["menus"][1]["name"]+ " "+response.body["stores"][1]["menus"][1]["description"]
+          stone=response.body["stores"][1]["menus"][2]["name"]+ " "+response.body["stores"][1]["menus"][2]["description"]
+          first=response.body["stores"][1]["menus"][3]["name"]+ " "+response.body["stores"][1]["menus"][3]["description"]
           @meal =today + "일 식단\n■양식\n#{eur}\n\n■한식\n#{kor}\n\n■돌솥\n#{stone}\n\n■일품\n#{first}"
       else
           @meal="식단이 없어요ㅠㅠ"
@@ -338,6 +338,112 @@ class ApiController < ApplicationController
             @@layer_depth=1
             @msg = ApiController.make_home_button(@@initial_button)
             render json: @msg, status: :ok
+      elsif @response == "카페냠냠" 
+            @market_information=Caffeine.all
+            @button_layer=Array.new #최종 버튼
+            @@parameter_content="카페냠냠"
+            @@layer_depth = 2 
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+
+      elsif @response == "간식냠냠"
+            @market_information=Snack.all
+            @button_layer=Array.new
+            @@parameter_content="간식냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "한식냠냠"
+            @market_information=Korea.all
+            @button_layer=Array.new
+            @@parameter_content="한식냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "중식냠냠"
+            @market_information=China.all
+            @button_layer=Array.new
+            @@parameter_content="중식냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "일식냠냠"
+            @market_information=Japan.all
+            @button_layer=Array.new
+            @@parameter_content="일식냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "양식냠냠"
+            @market_information=Europe.all
+            @button_layer=Array.new
+            @@parameter_content="양식냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "분식냠냠"
+            @market_information=Flour.all
+            @button_layer=Array.new
+            @@parameter_content="분식냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "고기냠냠"
+            @market_information=Meat.all
+            @button_layer=Array.new
+            @@parameter_content="고기냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "꼬꼬냠냠"
+            @market_information=Chicken.order(:name)
+            
+            @button_layer=Array.new
+            @@parameter_content="꼬꼬냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "알콜냠냠"
+            @market_information=Alcohol.all
+            @button_layer=Array.new
+            @@parameter_content="알콜냠냠"
+            @@layer_depth=2
+            
+            @button_layer=ApiController.add_label(@market_information)
+            @msg=ApiController.make_button(@button_layer)
+            render json: @msg, status: :ok
+            
+      elsif @response == "학식/긱사냠냠"
+            @@parameter_content="학식/긱사냠냠"
+            @@layer_depth=2
+            @msg=ApiController.make_button(@@school_food)
+            render json: @msg, status: :ok
                 
       elsif @@parameter_content=="카페냠냠"
             @button_layer=Array.new #최종 버튼
@@ -597,6 +703,11 @@ class ApiController < ApplicationController
                  @msg=ApiController.show_menu(@@school_food, ApiController.call_business_food)
                  render json:@msg, status: :ok
              end
+       else 
+            @@parameter_content="홈으로"
+            @@layer_depth=1
+            @msg = ApiController.make_home_button(@@initial_button)
+            render json: @msg, status: :ok
              
              
       
