@@ -77,3 +77,5 @@ made by JeongHyeongKim, dingco-dingco
 - 20181122
   1. layer_depth 변수 충돌문제 임시 해결
   2. 쓰지않는 카레냠냠, 랜덤냠냠 임시 제거 (랜덤냠냠 차후 오픈)
+
+wegfuikgdjahk
