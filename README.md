@@ -79,3 +79,6 @@ made by JeongHyeongKim, dingco-dingco
   2. 쓰지않는 카레냠냠, 랜덤냠냠 임시 제거 (랜덤냠냠 차후 오픈)
 
 wegfuikgdjahk
+
+
+wefcvfrtytjukiluytdgf
