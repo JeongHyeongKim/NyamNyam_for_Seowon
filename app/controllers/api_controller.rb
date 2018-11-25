@@ -54,6 +54,7 @@ class ApiController < ApplicationController
     @button_layer_flour=Array.new #분식
     @button_layer_chicken=Array.new #꼬꼬
     @button_layer_meat=Array.new #고기
+    @button_layer_etc=Array.new
     @home_button=Array.new
     @home_button.push("홈으로")
     
@@ -74,8 +75,8 @@ class ApiController < ApplicationController
             @button_layer_china.push("[중식] "+market_information.find(i).name)
         elsif market_information.find(i).category=="양식"
             @button_layer_europe.push("[양식] "+market_information.find(i).name)
-        elsif market_information.find(i).category=="분식"
-            @button_layer_flour.push("[분식] "+market_information.find(i).name)
+        elsif market_information.find(i).category=="간식"
+            @button_layer_flour.push("[간식] "+market_information.find(i).name)
         elsif market_information.find(i).category=="꼬꼬"
             @button_layer_chicken.push("[꼬꼬] "+market_information.find(i).name)
         elsif market_information.find(i).category=="고기"
@@ -86,7 +87,7 @@ class ApiController < ApplicationController
     end#버튼 생성
     end
     
-    return @home_button+@button_layer_korea+@button_layer_china+@button_layer_japan+@button_layer_europe+@button_layer_flour+@button_layer_chicken+@button_layer_meat
+    return @home_button+@button_layer_korea+@button_layer_china+@button_layer_japan+@button_layer_europe+@button_layer_flour+@button_layer_chicken+@button_layer_meat+@button_layer_etc
   end
   
     def self.add_label_alcohol(market_information) #위치 라벨 추가 및 버튼레이어 통합

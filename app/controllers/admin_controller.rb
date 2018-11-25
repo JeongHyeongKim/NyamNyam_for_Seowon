@@ -80,12 +80,12 @@ class AdminController < ApplicationController
     
     ###############################edit data###################################
     def bob_edit
-        @cafe=Bob.all
+        @bob=Bob.all
         @data=Bob.find(params[:post_id])
     end
     
     def dessert_edit
-        @snack=Dessert.all
+        @dessert=Dessert.all
         @data=Dessert.find(params[:post_id])
     end
     

@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   ##########################for model data###############################
 
 
-  get '/admin' => 'admin#select_model'
   get '/admin/bob' => 'admin#bob_list'
   get '/admin/dessert' => 'admin#dessert_list'
   get '/admin/alcohol' => 'admin#alcohol_list'    #listing each models
