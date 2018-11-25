@@ -1,2 +1,0 @@
-class Korea < ApplicationRecord
-end

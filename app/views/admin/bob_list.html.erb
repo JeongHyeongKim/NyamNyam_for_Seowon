@@ -5,7 +5,7 @@
     <meta name="viewport" 
           content="width=device-width, height=device-height, 
                      minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
-    <title>고기냠냠</title>
+    <title>중식냠냠</title>
     <style>
     div {
         width: 100%;
@@ -31,16 +31,16 @@
 <body>
     <div>
         <div class="left">
-            <% @meat.each do |x|%>
+            <% @bob.each do |x|%>
               <br>
               이      름 : <%=x.name%><br>
               사  진 URL : <%=x.photo_url%><br>
               페이지 URL : <%=x.detail_url%><br>
               영업  시간 : <%=x.open_time%><br>
-              위      치 : <%=x.location%><br>
-              전화  번호 : <%=x.contact%><br>
-              <a href="/admin/meat_destroy_one/<%=x.id%>">데이터 삭제</a><br>
-              <a href="/admin/meat_edit/<%=x.id %>">데이터 수정</a><br>
+              위      치 : <%=x.category%><br>
+              전화  번호 : <%x.contact%><br>
+              <a href="/admin/bob_destroy_one/<%=x.id%>">데이터 삭제</a><br>
+              <a href="/admin/bob_edit/<%=x.id %>">데이터 수정</a><br>
               =========================================================================<br>
             <%end%>
             
@@ -50,19 +50,19 @@
         
         
         <div class="right">
-            <form action="/admin/meat/add" method="post" id="add">
+            <form action="/admin/bob/add" method="post" id="add">
               <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
               이      름 : <input type="text" name="name"><br>
               사  진 URL : <input type="text" name="photo_url"><br>
               페이지 URL : <input type="text" name="detail_url"><br>
               영업  시간 : <input type="text" name="open_time"><br>
-              위      치 : <input type="text" name="location"><br>
+              위      치 : <input type="text" name="category"><br>
               전화  번호 : <input type="text" name="contact"><br>
               <input type="submit" value="추가하기">
             </form>
             <br><br>
             <a href="/admin">카테고리 선택화면</a><br>
-            <a href="/admin/meat_destroy_all">DB 전체삭제</a><br>
+            <a href="/admin/bob_destroy_all">DB 전체삭제</a><br>
             
             
             

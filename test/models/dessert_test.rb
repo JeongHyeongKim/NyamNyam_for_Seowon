@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class KoreaTest < ActiveSupport::TestCase
+class DessertTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

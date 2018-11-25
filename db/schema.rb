@@ -10,114 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181002163145) do
+ActiveRecord::Schema.define(version: 20181125074533) do
 
   create_table "alcohols", force: :cascade do |t|
     t.string   "name"
     t.string   "photo_url"
     t.string   "detail_url"
     t.string   "open_time"
-    t.string   "location"
     t.string   "contact"
+    t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "caffeines", force: :cascade do |t|
+  create_table "bobs", force: :cascade do |t|
     t.string   "name"
     t.string   "photo_url"
     t.string   "detail_url"
     t.string   "open_time"
-    t.string   "location"
     t.string   "contact"
+    t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "chickens", force: :cascade do |t|
+  create_table "desserts", force: :cascade do |t|
     t.string   "name"
     t.string   "photo_url"
     t.string   "detail_url"
     t.string   "open_time"
-    t.string   "location"
     t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "chinas", force: :cascade do |t|
-    t.string   "name"
-    t.string   "photo_url"
-    t.string   "detail_url"
-    t.string   "open_time"
-    t.string   "location"
-    t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "europes", force: :cascade do |t|
-    t.string   "name"
-    t.string   "photo_url"
-    t.string   "detail_url"
-    t.string   "open_time"
-    t.string   "location"
-    t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "flours", force: :cascade do |t|
-    t.string   "name"
-    t.string   "photo_url"
-    t.string   "detail_url"
-    t.string   "open_time"
-    t.string   "location"
-    t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "japans", force: :cascade do |t|
-    t.string   "name"
-    t.string   "photo_url"
-    t.string   "detail_url"
-    t.string   "open_time"
-    t.string   "location"
-    t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "koreas", force: :cascade do |t|
-    t.string   "name"
-    t.string   "photo_url"
-    t.string   "detail_url"
-    t.string   "open_time"
-    t.string   "location"
-    t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "meats", force: :cascade do |t|
-    t.string   "name"
-    t.string   "photo_url"
-    t.string   "detail_url"
-    t.string   "open_time"
-    t.string   "location"
-    t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "snacks", force: :cascade do |t|
-    t.string   "name"
-    t.string   "photo_url"
-    t.string   "detail_url"
-    t.string   "open_time"
-    t.string   "location"
-    t.string   "contact"
+    t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

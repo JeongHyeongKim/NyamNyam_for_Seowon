@@ -1,2 +1,0 @@
-class Japan < ApplicationRecord
-end

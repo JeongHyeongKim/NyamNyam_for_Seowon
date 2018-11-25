@@ -1,2 +1,0 @@
-class Caffeine < ApplicationRecord
-end
