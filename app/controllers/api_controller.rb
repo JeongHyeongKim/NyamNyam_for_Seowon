@@ -2,8 +2,8 @@ class ApiController < ApplicationController
   require 'unirest'
   
   @@layer_depth=1
-  @@initial_button=["학식/긱사냠냠", "식사냠냠", "카페냠냠", "알콜냠냠"]
-  @@school_food=["홈으로","학식냠냠", "긱사냠냠"]
+  @@initial_button=["학사행정서비스","학식/긱사냠냠", "한끼냠냠", "카페냠냠", "알콜냠냠"]
+  @@school_food=["#처음으로","학식냠냠", "긱사냠냠"]
 
   
   #pdf제공으로 인해 모바일 페이지로 안내 예정
@@ -16,12 +16,38 @@ class ApiController < ApplicationController
 # http://k.kakaocdn.net/dn/CljIq/btqmRoMuyOM/5J5keZ0SvzG1rlVrrS9uU1/img_xl.jpg => test photo
 # http://pf.kakao.com/_xhuxdtC/20814072 => test 메뉴판
 
-  
+  def self.show_service()
+	@msg={
+                     message: {
+                     text: "학사행정 페이지로 안내합니다.",
+                     photo:{
+                       url:"http://www.seowon.ac.kr/html/themes/kor/ver_2014/img/common/top_logo.png",
+                       width:640,
+                       height:480
+                     },
+                     message_button:{
+                       label:"Click",
+                       url:"https://seowon.seowon.ac.kr:44301/smart/index.jsp"
+                     }
+                    },
+                     keyboard: {
+                       type: "buttons",
+                      buttons:@@initial_button
+                     }
+              }
+      return @msg
+  end
   def self.delete_tag(data)
     @response=Array.new
     @response_buffer=data.split(//)
-    for i in 1..5
-      @response_buffer.delete_at(0)
+    if(data[1]=="아")
+	for i in 1..6
+		@response_buffer.delete_at(0)
+	end
+    else
+    	for i in 1..5
+      		@response_buffer.delete_at(0)
+    	end
     end
     @converted_response=String.new
     @converted_response=@response_buffer.join
@@ -56,7 +82,7 @@ class ApiController < ApplicationController
     @button_layer_meat=Array.new #고기
     @button_layer_etc=Array.new
     @home_button=Array.new
-    @home_button.push("홈으로")
+    @home_button.push("#처음으로")
     
     if (market_information.first.nil?)
         
@@ -82,7 +108,7 @@ class ApiController < ApplicationController
         elsif market_information.find(i).category=="고기"
             @button_layer_meat.push("[고기] "+market_information.find(i).name)
         elsif market_information.find(i).category=="기타"
-            @button_layer_etc.push("[기타] "+market_information.find(i).name)
+            @button_layer_etc.push("[아시아] "+market_information.find(i).name)
         end       
     end#버튼 생성
     end
@@ -97,7 +123,7 @@ class ApiController < ApplicationController
     @button_layer_kor=Array.new #중식
     @button_layer_etc=Array.new #양식
     @home_button=Array.new
-    @home_button.push("홈으로")
+    @home_button.push("#처음으로")
     
     if (market_information.first.nil?)
         
@@ -127,7 +153,7 @@ class ApiController < ApplicationController
 
       @msg={
             message: {
-                text: "홈으로",
+                text: "처음으로",
 
               },
               keyboard: {
@@ -164,9 +190,14 @@ class ApiController < ApplicationController
       if res=="학식냠냠"
           @msg={
                      message: {
-                     text: "크롤링이 불가합니다! 버튼을 누르면 페이지 링크로 안내해드릴게요!",
+                     text: "학생식당 홈페이지로 안내합니다.",
+                     photo:{
+                       url:"http://www.seowon.ac.kr/html/themes/kor/ver_2014/img/common/top_logo.png",
+                       width:640,
+                       height:480
+                     },
                      message_button:{
-                       label:"식단표 링크",
+                       label:"Click",
                        url:"https://m.seowon.ac.kr/html/themes/m/web/view.jsp?menuId=campuslife_f_09_01"
                      }
                      },
@@ -180,9 +211,14 @@ class ApiController < ApplicationController
       
           @msg={
                      message: {
-                     text: "크롤링이 불가합니다! 버튼을 누르면 페이지 링크로 안내해드릴게요!",
+                     text: "기숙사 홈페이지로 안내합니다.",
+                     photo:{
+                       url:"http://www.seowon.ac.kr/html/themes/kor/ver_2014/img/common/top_logo.png",
+                       width:640,
+                       height:480
+                     },
                      message_button:{
-                       label:"식단표 링크",
+                       label:"Click",
                        url:"http://home.seowon.ac.kr/user/indexSub.action?codyMenuSeq=8810&siteId=dormit&menuUIType=top"
                      }
                      },
@@ -198,7 +234,7 @@ class ApiController < ApplicationController
   def self.add_label_dessert(market_information) #위치 라벨 추가 및 버튼레이어 통합
     
     @home_button=Array.new
-    @home_button.push("홈으로")
+    @home_button.push("#처음으로")
     
     if (market_information.first.nil?)
         
@@ -241,11 +277,15 @@ class ApiController < ApplicationController
             
             @msg=ApiController.make_button(@@school_food) # 모바일 페이지로 안내 예정 수정!
             render json: @msg, status: :ok
+      
+      elsif @response == "학사행정서비스"
+            @msg=ApiController.show_service()
+            render json: @msg, status: :ok
 
-      elsif @response == "식사냠냠"
+      elsif @response == "한끼냠냠"
             @market_information=Bob.all
             @button_layer=Array.new
-            @@parameter_content="식사냠냠"
+            @@parameter_content="한끼냠냠"
             @@layer_depth=2
             
             @button_layer=ApiController.add_label_bob(@market_information)
@@ -273,7 +313,7 @@ class ApiController < ApplicationController
             render json: @msg, status: :ok
             
       else  #임시 예외처리
-            @@parameter_content="홈으로"
+            @@parameter_content="#처음으로"
             @@layer_depth=1
             @msg = ApiController.make_home_button(@@initial_button)
             render json: @msg, status: :ok
@@ -282,8 +322,8 @@ class ApiController < ApplicationController
       
       
     elsif @@layer_depth==2##메뉴 1차선택
-      if @response=="홈으로"
-            @@parameter_content="홈으로"
+      if @response=="#처음으로"
+            @@parameter_content="#처음으로"
             @@layer_depth=1
             @msg = ApiController.make_home_button(@@initial_button)
             render json: @msg, status: :ok
@@ -295,10 +335,10 @@ class ApiController < ApplicationController
             @msg=ApiController.make_button(@@school_food) # 모바일 페이지로 안내 예정 수정!
             render json: @msg, status: :ok
 
-      elsif @response == "식사냠냠"
+      elsif @response == "한끼냠냠"
             @market_information=Bob.all
             @button_layer=Array.new
-            @@parameter_content="식사냠냠"
+            @@parameter_content="한끼냠냠"
             @@layer_depth=2
             
             @button_layer=ApiController.add_label_bob(@market_information)
@@ -311,7 +351,7 @@ class ApiController < ApplicationController
             @@parameter_content="카페냠냠"
             @@layer_depth=2
             
-            #@button_layer=ApiController.add_label(@market_information)
+            @button_layer=ApiController.add_label_dessert(@market_information)
             @msg=ApiController.make_button(@button_layer)
             render json: @msg, status: :ok
             
@@ -327,7 +367,7 @@ class ApiController < ApplicationController
             
 #################################layer_depth 공유문제 해결####################################
 
-      elsif @@parameter_content=="식사냠냠"
+      elsif @@parameter_content=="한끼냠냠"
             @button_layer=Array.new #최종 버튼
             @content_information=Bob.all #카페의 모든 정보
             @converted_response=ApiController.delete_tag(@response) #사용자로부터 받은 입력값
@@ -405,7 +445,7 @@ class ApiController < ApplicationController
 
 
        else 
-            @@parameter_content="홈으로"
+            @@parameter_content="#처음으로"
             @@layer_depth=1
             @msg = ApiController.make_home_button(@@initial_button)
             render json: @msg, status: :ok
