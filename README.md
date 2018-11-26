@@ -1,5 +1,5 @@
 # NyamNyam for seo-won university
-This is chatbot-NyamNyam for chung-ju university
+This is chatbot-NyamNyam for seo-won university
 made by JeongHyeongKim, dingco-dingco
 
 
